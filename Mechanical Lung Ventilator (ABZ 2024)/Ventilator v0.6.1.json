@@ -2,7 +2,7 @@
     {
         "reqid": "CONT13",
         "parent_reqid": "FUN5_1",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The controller shall check the communication of the controller with the sensors and valves.",
         "comments": "Oisín: Because of this requirement and CONT14, I decided to make FUN5.1 more detailed.\n\nMatt, v0.6: timing - eventually, seems this would take time.",
         "fulltext": "in StartUpMode Controller shall eventually satisfy checkCommsSensors & checkCommsValves",
@@ -75,7 +75,7 @@
     {
         "reqid": "CONT33",
         "parent_reqid": "FUN26",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When the inspiratory flow (V_E) drops below a fraction of the peak flow (Expiratory Trigger Setting (ETS)) of a given breath (i.e., it yields the condition V_E<ETS*PeakV_E), the ventilator shall stop providing pressure allowing exhalation.",
         "comments": "Oisín, v0.5: Translated this one directly, I wonder if some of this detail should be put into FUN26 as well.\nCurrent FUN26: \"in PSVMode when Fl1 < ExpiratoryTriggerSensitivity System shall satisfy expirationPhaseStart\"\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "in PSVMode when V_E<ExpiratoryTriggerSensitivity*PeakV_E Controller shall at the next timepoint satisfy expirationPhaseStart",
@@ -163,7 +163,7 @@
     {
         "reqid": "CONT19",
         "parent_reqid": "FUN6",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the SelfTest fails, the controller shall not be able to proceed to ventilation.",
         "comments": "Oisín, v0.5: Trying to be direct with the translation makes this one weirdly different to FUN7.\n\nMatt, v0.6: timing - Left this with the stopping condition",
         "fulltext": "in SelfTestMode if SelfTestFail Controller shall until off satisfy !StandbyMode & !ventilating",
@@ -258,7 +258,7 @@
     {
         "reqid": "CONT36_2",
         "parent_reqid": "FUN28",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the controller is in expiration phase and a spontaneous breath is not detected (i.e., the condition drop(PAW) > ITS_PSV ) is false), within the interval [min_exp_time_psv : apnea lag], if the Expiratory Pause is set by the GUI, an Expiratory Pause shall start (see CONT.42).",
         "comments": "CONT27: in PCVMode when expiratoryPauseButton & ExpiratoryPhaseEnd & !patientBreathingRequest System shall until buttonUnPressOr60Seconds satisfy expirationPhaseEnd & inValveClose & outValveClose\n\nOisín, v0.5: Sort of a duplicate of CONT27, but with a timing interval for some reason.\n\nMatt, v0.6: timing - Left stopping condition as is",
         "fulltext": "while PSVMode when expiratoryPauseButton & expClock <= apneaLagTime & !patientBreathingRequest Controller shall until buttonUnPressOr60Seconds satisfy expirationPhaseEnd & inValveClose & outValveClose",
@@ -357,7 +357,7 @@
     {
         "reqid": "CONT14",
         "parent_reqid": "FUN5_1",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": " The controller shall check the communication of the controller with GUI.",
         "comments": "Matt, v0.6: timing - eventually, takes time",
         "fulltext": "in StartUpMode Controller shall eventually satisfy checkCommsGUI",
@@ -429,7 +429,7 @@
     {
         "reqid": "CONT21",
         "parent_reqid": "FUN19",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The breath cycle shall start with the inspiration phase.",
         "comments": "Matt, v0.6: timing - changed immediately to next, to match other triggered responses\nOisín, v0.6.1: Actually did the above change",
         "fulltext": "in PCVMode when BreathingCycleStart Controller shall at the next timepoint satisfy inspiratoryPhaseStart",
@@ -504,7 +504,7 @@
     {
         "reqid": "CONT26",
         "parent_reqid": "FUN21",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Within the trigger window during the expiratory phase, in the case of spontaneous breathing, the ventilator shall trigger a new breathing cycle (i.e., it goes in inspiration phase) when it detects a sudden drop in pressure above the inhale trigger sensitivity (i.e., it yields the condition drop(PAW) > ITS_PCV )). Note that drop is positive if the pressure drops. Rationale: In a pressure-regulated ventilator, the intensity of pressure drops initiated by the patient is the easiest way to detect the spontaneous breathing attempt as per ventilator experts",
         "comments": "Oisín, v0.5: Wrote this one in the context of CONT25\n\nMatt, v0.6: timing - changed immediately to next, to match other triggered responses",
         "fulltext": "while PCVMode when dropPAW > ITS_PCV Controller shall at the next timepoint satisfy patientBreathingRequest",
@@ -591,7 +591,7 @@
     {
         "reqid": "CONT1",
         "parent_reqid": "FUN4",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The controller shall implement the following modes (see\nFigure 4.1):",
         "comments": "Oisín: This requirement doesn't really exist to be honest, it's just grouping the other mode-related CONT requirements. After discussion, made it a list of the modes (so a copy of FUN4).\n\nMatt, v0.6: timing - always, no conditions. ",
         "fulltext": "Controller shall always satisfy StartUpMode | SelfTestMode | StandbyMode | PCVMode | PSVMode | FailSafeMode",
@@ -662,7 +662,7 @@
     {
         "reqid": "CONT34",
         "parent_reqid": "FUN29",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "At the end of an inspiration phase, if the Inspiratory Pause is set by the GUI, an Inspiratory Pause shall start (see CONT.41).",
         "comments": "Oisín, v0.5: Duplicate of CONT23 for PSVMode\n\nMatt, v0.6: timing - Leaving timing condition as is",
         "fulltext": "while PSVMode & inspiratoryPauseButton when inspiratoryPhaseEnd Controller shall for 40 seconds satisfy (inspiratoryPauseButton => inValveClose & outValveClose)",
@@ -751,7 +751,7 @@
     {
         "reqid": "CONT31",
         "parent_reqid": "FUN24",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The target inspiratory pressure level shall be controlled\nby the Inspiratory Pressure parameter (P_inspPSV ).",
         "comments": "Oisín, v0.5: The same as CONT28, still don't really know what to do with these",
         "fulltext": "",
@@ -761,7 +761,7 @@
     {
         "reqid": "CONT38",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When the ventilator is in Start-up or VentilationOff mode, the in valve pressure shall be set to close and the out valve shall be open.\nRationale: if the machine is not ventilating the valves are in a secure configuration state, in valve is closed and out valve is opened.",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "while StartUpMode | StandbyMode Controller shall always satisfy inValveClose & outValveOpen",
@@ -835,7 +835,7 @@
     {
         "reqid": "CONT41",
         "parent_reqid": "FUN29",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV and PSV modes there shall be the possibility to initiate an Inspiratory Pause if it is set by the GUI.\nRationale: The Inspiratory Pause will initiate a forced hold at the end of inspiration, allowing for the measurement of the Plateau Pressure (PP), the pressure reached inside the alveoli at the end of the inspiratory cycle. PP may be lower than the Set Inspiratory Pressure (SIP) provided by the ventilator. The difference between PP and the PEEP is called Driving Pressure, DP (DP = PP - PEEP).",
         "comments": "FUN29: while inspiratoryPauseButton when (inspiratoryPhaseEnd) System shall for 40 seconds satisfy (inspiratoryPauseButton => inValveClose & outValveClose)\n\nOisín, v0.5: I don't understand why this requirement exists, CONT23 & CONT34 already cover it. I think this is the most direct translation of this in FRETISH.\n\nMatt, v0.6: timing - Leaving timing as eventually, this seems right.",
         "fulltext": "while (PCVMode | PSVMode) when inspiratoryPauseButton Controller shall eventually satisfy inspiratoryPause | !inspiratoryPauseButton ",
@@ -922,7 +922,7 @@
     {
         "reqid": "CONT32",
         "parent_reqid": "FUN40",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The inspiration phase lasts until the inspiration peak is reached but no later than the max_insp_time_psv is over. After that the expiration phase begins.\nRationale: In PSV mode, the ventilator supports the patient who is supposed to breathe spontaneously. In case a spontaneous expiration is not triggered, the ventilator forces the expiration phase after a suitable timeout (around 7 sec) to wait for a spontaneous breath",
         "comments": "if P_insp > MaxP_insp System shall satisfy inspiratoryPhaseEnd & expirationPhaseStart\n\nOisín, v0.5: I am using inspiratoryTime for max_insp_time_psv here for consistency, I'm pretty sure those are the same thing.\n\nMatt, v0.6: timing - Leaving stopping condition as is",
         "fulltext": "in PSVMode Controller shall until (P_insp >= MaxP_insp | inspClock >= inspiratoryTime) satisfy inspiratoryPhase",
@@ -1005,7 +1005,7 @@
     {
         "reqid": "CONT12",
         "parent_reqid": "FUN5",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "A set of default values for all parameters shall be provided and loaded from a configuration file on the machine when it is turned on. The parameters are listed in Section 3.1.1.",
         "comments": "Matt, v0.6: timing - eventually, takes time",
         "fulltext": "in StartUpMode Controller shall eventually satisfy defaultParamsLoaded",
@@ -1077,7 +1077,7 @@
     {
         "reqid": "CONT45",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Before monitoring a sudden drop in pressure above the inhale trigger sensitivity ITS, the controller shall wait for the trigger window (0.7 sec).",
         "comments": "Oisín, v0.5: Is this defining another different value for minExpiratoryTime/min exp time psv (CONT36_3)?\n\nMatt, v0.6: timing - Leaving timing condition as is",
         "fulltext": "when expirationPhaseStart Controller shall after 700 milliseconds satisfy monitorInhaleTrigger",
@@ -1158,7 +1158,7 @@
     {
         "reqid": "CONT4",
         "parent_reqid": "FUN6",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "CONT.4: The transition from Self-Test Mode to VentilationOff Mode shall occur:\n(That's genuinely the whole requirement)\nCONT.4.1: When the self-test procedure has successfully been completed\nCONT.4.2: When the GUI asks for resuming ventilation",
         "comments": "Oisín: I combined these into one because I don't know what else to do with them. Also decided to just use StandbyMode instead of VentilationOff in this one. I think this should be an OR in the condition but not 100% confident on that.\n\nMatt, v0.6: timing - Next, triggered response",
         "fulltext": "in SelfTestMode if selfTestPassed | GUIResumeRequest Controller shall at the next timepoint satisfy StandbyMode",
@@ -1245,7 +1245,7 @@
     {
         "reqid": "CONT1_2",
         "parent_reqid": "FUN6",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Self-Test Mode: in the Self Test mode the controller allows the GUI to do all the operations necessary to perform the self-test.",
         "comments": "Oisín: This is effectively a GUI requirement, we need to have some concept of the GUI doing things to be able to model it.",
         "fulltext": "",
@@ -1255,7 +1255,7 @@
     {
         "reqid": "CONT3",
         "parent_reqid": "FUN5",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from Start-up Mode to Self test Mode shall occur once the configurations have been loaded and the internal checking is terminated.\nRationale: At this point, the monitoring module is able to carry out the assigned functionality",
         "comments": "Oisín: This requirement suffers a bit from us just having \"initDone\" rather than variables for each aspect of the initial configuration\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "in StartUpMode when initDone Controller shall at the next timepoint satisfy SelfTestMode",
@@ -1341,7 +1341,7 @@
     {
         "reqid": "CONT35",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "At the end of an inspiration phase if no inspiration pause is required and the Recruitment Maneuver (RM) is set by the GUI, a Recruitment Maneuver shall start (see CONT.43).",
         "comments": "Oisín, v0.5: Duplicate of CONT24 for PSVMode. This one doesn't have a fun parent because, for some reason, FUN22 specifies PCVMode for the Recruitment Maneuver and there isn't an equivalent for PSV.\n\nMatt, v0.6: timing - Next, triggered condition",
         "fulltext": "while PSVMode & RMButton when inspiratoryPhaseEnd Controller shall at the next timepoint satisfy RM",
@@ -1428,7 +1428,7 @@
     {
         "reqid": "CONT46",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The controller cannot return from fail-safe mode to any other mode without a power cycle (turn off and then turn on the machine).",
         "comments": "Oisín: Despite the number, this requirement actually appears directly after CONT10 in the document.\n\nNote that AlarmTestMode was only mentioned in FUN4 before I made this one, so we can maybe delete it?\n\nMatt, v0.6: timing - changing to until off",
         "fulltext": "after FailSafeMode Controller shall until off satisfy !(StartUpMode | SelfTestMode | StandbyMode | PCVMode | PSVMode)",
@@ -1514,7 +1514,7 @@
     {
         "reqid": "CONT23",
         "parent_reqid": "FUN29",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "At the end of an inspiration phase, if the Inspiratory Pause is set by the GUI, an Inspiratory Pause shall start (see CONT.41).",
         "comments": "Oisín, v0.5: Just a copy of FUN29 specific to PSVMode.\n\nMatt, v0.6: timing - Leaving the timing as is",
         "fulltext": "while PCVMode & inspiratoryPauseButton when inspiratoryPhaseEnd Controller shall for 40 seconds satisfy (inspiratoryPauseButton => inValveClose & outValveClose)",
@@ -1603,7 +1603,7 @@
     {
         "reqid": "CONT43_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The Recruitment Maneuver, if not actively stopped by the GUI, has a timeout (max_rm_time). After the Recruitment Maneuver phase expiration phase begins.\nRationale: It is not reasonable to keep the patient in this emergency state without letting him breathe.",
         "comments": "Oisín, v0.5: Note that max_rm_time is set to 10 seconds by default in PER3.2.\n\nMatt, v0.6: timing - Leaving timing condition as is",
         "fulltext": "when RM Controller shall after 10 seconds satisfy !RM & expirationPhaseStart",
@@ -1684,7 +1684,7 @@
     {
         "reqid": "CONT1_6",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Fail-safe: the controller forces input and output valves to their de-energized states (in valve close and out valve open)",
         "comments": "Oisín: I wonder if this should be \"shall always satisfy\", or if the default 'eventually' is fine?\n\nAlso this requirement doesn't have in \"input ref\", but it's effectively a child of FUN32.\n\nMatt, v0.6: timing - always, constant throughout the mode, now matches CONT1_3",
         "fulltext": "in FailSafeMode Controller shall always satisfy inValveClose & outValveOpen",
@@ -1757,7 +1757,7 @@
     {
         "reqid": "CONT42",
         "parent_reqid": "FUN28",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV and PSV modes there shall be the possibility to initiate an Expiratory Pause if it is set by the GUI.\nRationale: The Expiratory Pause will initiate a forced hold at the end of expiration, allowing the measurement of the AutoPEEP level for the patient, providing information on the level of obstruction in the exhalation channel. AutoPEEP may be zero for most patients or significantly different from zero for patients that have obstructions in the exhalation channel, as possibly generated by secretions. In this case, the small flow during exhalation may result in an incomplete drain of the alveoli during the expiration phase.",
         "comments": "Oisín, v0.5: Same as CONT 41, just for expiration instead of inspiration.\n\nMatt, v0.6: timing - leaving timing as eventually",
         "fulltext": "while (PCVMode | PSVMode) when expiratoryPauseButton Controller shall eventually satisfy expiratoryPause | !expiratoryPauseButton",
@@ -1844,7 +1844,7 @@
     {
         "reqid": "CONT17",
         "parent_reqid": "FUN6",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "During the self test mode the controller shall allow the GUI to perform all the self-test specified in the FUN.6.\n",
         "comments": "Oisín, v0.5: Talking about the GUI so I have ignored it for now",
         "fulltext": "",
@@ -1854,7 +1854,7 @@
     {
         "reqid": "CONT39",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "CONT39: When the ventilator is in an Inspiration state, the out valve shall be closed and the in valve pressure shall be set to target inspiratory pressure (P_insp of the corresponding mode).\n\nCONT39_1: P_inspPCV if current mode is PCV.\nCONT39_2: P_inspPSV if current mode is PSV.\nCONT39_3: P_inspAP if current  model is PCV from apnea backup.",
         "comments": "Oisín, v0.5: I have essentially inlined CONT39_1, 39_2 and 39_2 into this one, since they just say explicitly each of the modes. No reason to make them separate.\n\nMatt, v0.6: timing - always, no conditions but conditions in the response",
         "fulltext": "while inspiratoryPhase Controller shall always satisfy outValveClose & (PCVMode & !apnea => P_insp = P_isnpPCV) & (PSVMode => P_insp = P_inspPSV) & (PCVMode & apnea => P_insp = P_inspAP)",
@@ -1933,7 +1933,7 @@
     {
         "reqid": "CONT5",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from VentilationOff to PSV shall occur if the change mode command is received from the GUI.\nRationale: the ventilation starts in PCV mode when the user selects the start command from the GUI.",
         "comments": "Oisín: Using StandbyMode here instead of VentilationOff.\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "in StandbyMode if PSVModeSelected Controller shall at the next timepoint satisfy PSVMode",
@@ -2019,7 +2019,7 @@
     {
         "reqid": "CONT28",
         "parent_reqid": "FUN20",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The target inspiratory pressure level shall be controlled by the Inspiratory Pressure parameter (P_inspPCV ) and it is kept constant.",
         "comments": "Oisín, v0.5: Filled this one in after discussion in a meeting.\n\nMatt, v0.6: timing - Always, no conditions",
         "fulltext": "in PCVMode Controller shall always satisfy P_insp = P_inspPCV",
@@ -2092,7 +2092,7 @@
     {
         "reqid": "CONT36",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the patient is in expiration phase:",
         "comments": "Oisín, v0.5: Another fake requirement",
         "fulltext": "while expiratoryPhase Controller shall",
@@ -2102,7 +2102,7 @@
     {
         "reqid": "CONT43",
         "parent_reqid": "FUN22",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV and PSV mode, at the end of an inspiration and if inspiratory pause is not required, it shall be possible to initiate a lung recruitment procedure, termed Recruitment Maneuver (RM), if it is required by the GUI.\nNot available in North America. \nRationale: The RM is an emergency procedure required immediately after the end of the intubation. RM consists in the prolonged lung inflation at increased inspiratory set pressure, as necessary to reactivate the alveoli immediately after intubation.",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "while (PCVMode | PSVMode) & RMButton & !inspiratoryPauseButton when inspiratoryPhaseEnd Controller shall at the next timepoint satisfy RM",
@@ -2191,7 +2191,7 @@
     {
         "reqid": "CONT10",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from PSV to VentilationOff shall occur if the user stops the ventilation in PSV mode. Rationale: the ventilation stops when the user selects the\nstop command from the GUI.",
         "comments": "Exactly the same as CONT8, just with PSVMode\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "in PSVMode if stopVentilation Controller shall at the next timepoint satisfy StandbyMode",
@@ -2277,7 +2277,7 @@
     {
         "reqid": "CONT24",
         "parent_reqid": "FUN22",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "At the end of an inspiration phase, if inspiratory pause is not required and the Recruitment Maneuver (RM) is set by the GUI, a Recruitment Maneuver shall start (see CONT.43).",
         "comments": "Oisín, v0.5: Copied the structure of FUN29/CONT23 for this one. Oddly, FUN22 doesn't say the RM occurs at the end of an inspiration phase, and thus we say there that it happens immediately.\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "while PCVMode & RMButton when inspiratoryPhaseEnd Controller shall at the next timepoint satisfy RM",
@@ -2364,7 +2364,7 @@
     {
         "reqid": "CONT42_1",
         "parent_reqid": "FUN28",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When the Expiratory Pause is set by the GUI, the ventilator shall wait for the end of the next expiration phase, and if the Expiratory Pause is still required, both the inspiratory and expiratory valves will close until the expiratory pause is stopped by the GUI.",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "while (PCVMode | PSVMode) & expiratoryPauseButton when expiratoryPhaseEnd Controller shall at the next timepoint satisfy (expiratoryPauseButton => expiratoryPause & inValveClose & outValveClose)",
@@ -2454,7 +2454,7 @@
     {
         "reqid": "CONT6",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from VentilationOff to PCV mode shall occur if the change mode command is received from the GUI.\nRationale: the ventilation starts in PSV mode when the user selects the start command from the GUI.",
         "comments": "Oisín: Again, replacing VentilationOff with StandbyMode\n\nMatt, v0.6: timing - Next, triggered response",
         "fulltext": "in StandbyMode if PCVModeSelected Controller shall at the next timepoint satisfy PCVMode",
@@ -2540,7 +2540,7 @@
     {
         "reqid": "CONT43_3",
         "parent_reqid": "FUN22",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In RM the out valve shall be closed and the in valve shall be opened to allow lung inflation at PRM",
         "comments": "Oisín, v5.1: Somehow I just missed this one the first time around.",
         "fulltext": "while RM Controller shall always satisfy outValveClose & inValveOpen",
@@ -2613,7 +2613,7 @@
     {
         "reqid": "CONT41_1",
         "parent_reqid": "FUN29",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When the Inspiratory Pause is set by the GUI, the ventilator shall wait for the end of the next inspiration phase, and if the Inspiratory Pause still required, both the inspiratory and expiratory valves will close until the inspiratory pause is stopped by the GUI.",
         "comments": "FUN29: while inspiratoryPauseButton when (inspiratoryPhaseEnd) System shall for 40 seconds satisfy (inspiratoryPauseButton => inValveClose & outValveClose)\n\nOisín, v0.5: This is basically just a copy of FUN29, just without the time limit.\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "while (PCVMode | PSVMode) & inspiratoryPauseButton when inspiratoryPhaseEnd Controller shall at the next timepoint satisfy (inspiratoryPauseButton => inspiratoryPause & inValveClose & outValveClose)",
@@ -2703,7 +2703,7 @@
     {
         "reqid": "CONT18",
         "parent_reqid": "FUN6",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "During the self test mode the controller shall perform the self-test specified in the FUN.6.",
         "comments": "Oisín, v0.5: Feel like this one should just be the same as FUN6\n\nMatt, v0.6: timing - leaving as eventually, this seems good. will take time",
         "fulltext": "in SelfTestMode Controller shall eventually satisfy selfTestPassed | selfTestFailed",
@@ -2776,7 +2776,7 @@
     {
         "reqid": "FUN26",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PSV mode the expiration phase shall start when the inspiratory flow drops below a setable fraction of the peak flow (Expiratory Trigger Setting) \n\nRationale: Dropping inspiratory flow indicates the end of the inspiration\n\nAssuming that \"inspiratory flow\" is measured by Fl1 in figure 2.2",
         "comments": "Oisín, v0.3: renamed \"ExpiratoryTrigger\" to \"ExpiratoryTriggerSensitivity\" for consistency\n\nMatt, v0.6: timing - next, triggered response.",
         "fulltext": "in PSVMode when Fl1 < ExpiratoryTriggerSensitivity System shall at the next timepoint satisfy expirationPhaseStart",
@@ -2863,7 +2863,7 @@
     {
         "reqid": "FUN8_12",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall log user-set ventilation and alarm parameters as well as the current calibration parameters. \n\nRationale: user-set ventilation and alarm parameters need to be able for the resumption of ventilation in case the system has to be briefly turned off.",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy logVentilationParams & logAlarmParams & logCalibrationParams",
@@ -2931,7 +2931,7 @@
     {
         "reqid": "FUN30",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The high-level operation sequence shall follow the scheme shown in Figure 2.1",
         "comments": "This is an activity diagram that shows the high-level mode changes. This should really be several requirements, this feels messy\n\nMatt, v0.4: Updating to match Fig 2.1 (updated in v1.3 of the natural language specification). Adding startPCV and startPSV, adding runSelfTest.\n\nOisín, v0.5: Noticed that this mistakenly had \"StandByMode\" instead of \"StandbyMode\" like everywhere else, so I changed it.\n\nMatt, v0.6: timing - Always, no conditions",
         "fulltext": "System shall always satisfy if StartUpMode then (if newPatient then SelfTestMode & if !newPatient then StandbyMode) & if SelfTestMode then (if selfTestPassed then StandbyMode) & if StandbyMode then (if startPCV then PCVMode & if startPSV then PSVMode & if runSelfTest then SelfTestMode) & if error then FailSafeMode & if powerOff then off",
@@ -3010,7 +3010,7 @@
     {
         "reqid": "FUN23_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When a PCV-to-PSV switch is initiated by the user the  system shall ask the user for confirmation/setting of PSV parameters to be used",
         "comments": "Matt, v0.6: timing - eventually, interacts with GUI",
         "fulltext": "in PCVMode when PSVModeSelected System shall eventually satisfy confirmPSVParameters",
@@ -3096,7 +3096,7 @@
     {
         "reqid": "FUN40",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall react to the inspiratory airway pressure at the patient being exceeded (Max P insp alarm SAV.4) (e.g. by coughing) by truncating the inspiratory phase and immediately transitioning to expiration, quickly relieving the pressure. \n\nRationale: need to avoid excessive pressure in the lungs",
         "comments": "Matt, v0.4: Separating the subscripts with underscores.\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "if P_insp > MaxP_insp System shall at the next timepoint satisfy inspiratoryPhaseEnd & expirationPhaseStart",
@@ -3178,7 +3178,7 @@
     {
         "reqid": "FUN8_4",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall not lose the contents of the alarm system log during a loss of power for less than 7 d unless erased by authorized personnel of the hospital.",
         "comments": "Not sure how to formalise this.",
         "fulltext": "",
@@ -3188,7 +3188,7 @@
     {
         "reqid": "FUN38_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall raise an alarm when a parameter value goes outside the range defined for its associated alarm.",
         "comments": "Matt, v0.6: timing - triggered response",
         "fulltext": "if param_V > paramMax_V | param_V < paramMin_V System shall at the next timepoint satisfy paramAlarm_V",
@@ -3270,7 +3270,7 @@
     {
         "reqid": "FUN6_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The self-test procedure shall confirm the FI2 flow meter in the patient breathing circuit is connected in the right direction and is calibrated.",
         "comments": "Oisín, v0.3.1: Changed the response from just \"satisfy testFl2\" to \"satisfy testFl2Pass | testFl2Fail | testFl2Skip\", to work better with FUN10 and its children.\n\nMatt, v0.6: timing - eventually because it's in a mode",
         "fulltext": "in SelfTestMode System shall eventually satisfy testFl2Pass | testFl2Fail | testFl2Skip",
@@ -3344,7 +3344,7 @@
     {
         "reqid": "FUN15",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall measure the Ventilatorv0.2 pressure at/near the inlet to the patient. \n\nRationale: observing and identifying the monitored ventilation parameters is considered a primary operating function\n\nAssuming that \"Ventilatorv0.2 pressure at/near the inlet to the patient\" is the same as PSins (pressure in the entrance to the patient) in Figure 2.2",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy measurePSins",
@@ -3410,7 +3410,7 @@
     {
         "reqid": "FUN5_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Upon initiation of the Start-up Mode, the system shall go through an initialization process that loads default parameters and checks the system memory and the communication of the controller with the sensors and valves, as well as between the controller and the GUI. \n\nRationale: Need to ensure that the system properly started.",
         "comments": "Oisin, v.0.3: changed \"shall satisfy initDone\" to \"shall satisfy initStart\", since I think that more accurately captures what's happening. The NL requirement has more detail on the initialisation process, maybe that could be a further child requirement? Or just included here\n\nOisín, v0.5: I decided to make this more detailed now since CONT13 and CONT14 are child requirements of this one. Previous text:\n\"in StartUpMode System shall satisfy initStart\"\n\nMatt, v0.6: timing - eventually because things like initStart should happen at some point in this mode.",
         "fulltext": "in StartUpMode System shall eventually satisfy initStart & checkCommsSensors & checkCommsValves & checkCommsGUI",
@@ -3485,7 +3485,7 @@
     {
         "reqid": "FUN41",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "A failure of the GUI (e.g. GUI freezes) or a loss of communication between the GUI and the Controller shall raise a high-priority alarm and any ongoing ventilation process shall not be interrupted. \n\nRationale: in order to keep the patient safe, the ventilation needs to continue even if there is no connection between the controller and the GUI",
         "comments": "Matt, v0.6: timing - triggered response. Feels like this could be always, but that would need a stopping condition (and we can't have both). Assume that the alarm and ventilating don't get set to false unless the condition is rectified.",
         "fulltext": "if GUIFailue | !GUIConnected System shall at the next timepoint satisfy ventilating & highPriorityAlarm",
@@ -3567,7 +3567,7 @@
     {
         "reqid": "FUN9",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Once the self-test has been completed successfully and configurations have been loaded properly the system shall start monitoring and reporting health parameters.\n\nRationale: At this point the monitoring module is able to carry out its assigned functionality.",
         "comments": "Oisin, v0.3: Changed \"selfTestDone\" to \"selfTestPassed\"\nMatt, v0.4: Added transition to Standby Mode (as per Fig 2.1 and via conversation with Angelo Garagantini on github); SelfTestPass -> SelfTestPassed (as per Fig 2.1 since v1.3 of the natural language specification)\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "when selfTestPassed System shall at the next timepoint satisfy startMonitoring & startReportingHealthParams & StandbyMode",
@@ -3649,7 +3649,7 @@
     {
         "reqid": "FUN31",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Any normal operating mode or identified failure mode of the system and its components shall always result in a state of the system that is safe for the patient. \n\nRationale: patient safety is primary concern",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy patientSafe",
@@ -3715,7 +3715,7 @@
     {
         "reqid": "FUN19",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have a pressure control ventilation (PCV) mode, as characterized by the following plots of pressure and flow versus time. [Plots are on page 10 of the spec] \n\nRationale: this is the most appropriate procedure for COVID-19 patients as it allows the immediate reopening of the alveoli and is strongly recommended by the doctors and nurses in the COVID-19 wards of Lombardy, rather than the constant flow procedure. These characteristics of the Ventilatorv0.2 pressure transient during the inspiratory cycle are crucial to avoid barotrauma and to minimise long term fatigue of muscles and alveoli induced by forced mechanical ventilation.",
         "comments": "Not sure that this one can be formalised",
         "fulltext": "",
@@ -3725,7 +3725,7 @@
     {
         "reqid": "FUN10_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If “Resume Ventilation” is selected, every step of the self-test procedure FUN.6 can be skipped or optionally rerun individually.",
         "comments": " Original version: \"when resumeVentilation System shall satisfy skipSelfTest | rerunIndividualSelfTests\"\nOisín, v0.3.1: Changed to specify the transition to SelfTestMode and to include the definition of 'selfTestPass' to allow for tests to be skipped\nMatt, v0.4: SelfTestPass -> SelfTestPassed (as per Fig 2.1 since v1.3 of the natural language specification). Leaving the individual tests as \"pass\" because they're not mentioned in Fig 2.1.\n\nMatt, v0.6: timing - eventually, same as 10_1, the pass/skips take time.\nOisín, v0.6.1: Actually made the above change",
         "fulltext": "when resumeVentilation System shall eventually satisfy SelfTestMode & (( (testPowerSwitchPass | testPowerSwitchSkip) & (testLeaksPass | testLeaksSkip) & (testFl2Pass | testFl2Skip) & (testPSExpPass | testPSExpSkip) & (testOxygenSensorPass | testOxygenSensorSkip) & (testAlarmsPass | testAlarmsSkip) ) => selfTestPassed)",
@@ -3807,7 +3807,7 @@
     {
         "reqid": "FUN27",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PSV mode the system shall check for the presence of apnea, which occurs when a patient does not take new breath within the allowable apnea lag time. \n\nRationale: In case the patient stops breathing (apnea) the system needs to be able to ensure that the patient continues to be ventilated.",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "in PSVMode when breathingTime >= apneaLagTime System shall at the next timepoint satisfy apnea",
@@ -3894,7 +3894,7 @@
     {
         "reqid": "FUN8_5",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall not permit the healthcare professional operator to erase the contents of the alarm system log.",
         "comments": "Matt, v0.6: timing - always because no conditions",
         "fulltext": "System shall always satisfy if user = operator then !eraseLog",
@@ -3962,7 +3962,7 @@
     {
         "reqid": "FUN16",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall measure and display the volume of gas delivered to the patient per breathing cycle (tidal volume). \n\nRationale: observing and identifying the monitored ventilation parameters is considered a primary operating function",
         "comments": "TV = Tidal Volume\n\nMatt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy measureTV & displayTV",
@@ -4029,7 +4029,7 @@
     {
         "reqid": "FUN18",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have a leak compensation feature for leaks in the patient breathing circuit which shall be disabled by default. Rationale: regulatory requirement",
         "comments": "Oisín, v0.3: Added brackets for clarity, and renamed first variable for consistency\n\nMatt, v0.6: timing - always, no conditions (despite the if in the response, but that's the make it expressible in one requirement.",
         "fulltext": "System shall always satisfy (if enableLeakCompensation then leakCompensation) | !leakCompensation",
@@ -4096,7 +4096,7 @@
     {
         "reqid": "FUN5_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The patient shall not be connected to the breathing circuit when the system is powered on and through start-up and self-test.",
         "comments": "Modelled in this odd way because StartUp and SelfTest are modes, and we can't have one requirement specifying two modes\n\nMatt, v0.6: timing - always because patient shouldn't be connected during either mode, ever.",
         "fulltext": "System shall always satisfy  (StartUpMode | SelfTestMode) -> !patientConnected",
@@ -4164,7 +4164,7 @@
     {
         "reqid": "FUN42",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The communication between Controller and GUI shall be reliable.",
         "comments": "Unsure how to formalise this wishful thinking.",
         "fulltext": "",
@@ -4174,7 +4174,7 @@
     {
         "reqid": "FUN28",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV and PSV mode there shall be the possibility to press a single button to initiate an Expiratory Pause that closes both inspiratory and expiratory valve at the end of the expiration phase as long as the operator holds the button but no longer than 60 sec \n\nRationale: The expiratory pause allows the determination of the residual pressure above the PEEP level, the residual value being PEEP + AutoPEEP. AutoPEEP level for the patient, providing information on the level of obstruction in the exhalation channel. AutoPEEP may be zero for most patients or significantly different from zero for patients that have obstructions in the exhalation channel, as possibly generated by secretions. In this case, the small flow during exhalation may result in an incomplete drain of the alveoli during the expiration phase.",
         "comments": "This is a messy timing property, but I can't see a clean way to do this in one FRETISH requirement.\n\nOisín, v0.3: added a condition that this happens at the end of the expiratory phase. I've left in the boolean in the responses for discussion purposes but I think having it in the conditions makes more sense. And yeah this is hard to do in a way that feels satisfying\n\nOisín, v0.5: changed the condition from \"when (PCVExpiratoryPhaseEnd | PSVExpiratoryPhaseEnd)\" to just \"when (ExpiratoryPhaseEnd)\", since those variables were only used here.\n\nMatt, v0.6: timing - Leaving the messy timing condition alone!",
         "fulltext": "when expiratoryPauseButton & (ExpiratoryPhaseEnd) System shall until buttonUnPressOr60Seconds satisfy expirationPhaseEnd & inValveClose & outValveClose",
@@ -4265,7 +4265,7 @@
     {
         "reqid": "FUN39",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall prompt the user before ventilation is started to enter user-controlled alarm thresholds for SAV.3- SAV.9 \n\nRationale: alarm thresholds may vary from patient to patient",
         "comments": "Matt, v0.6: timing - eventually, interacts with user/GUI",
         "fulltext": "before PSVMode | PCVMode System shall eventually satisfy enterAlarmThresholds",
@@ -4340,7 +4340,7 @@
     {
         "reqid": "FUN21",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV mode, a new breathing cycle shall be initiated either after a breathing cycle is over, or by patient request during expiration. \n\nRationale: while the main mode of PCV is the control of the breathing cycle timing by the Ventilator, the patient has to have the ability to trigger a breath on his own",
         "comments": "Matt, v0.6: timing - always, the way the response is written is constant, though if it were in the condition I'd have said it was 'next'.",
         "fulltext": "in PCVMode System shall always satisfy (breathingCycleDone | patientBreathingRequest) => breathingCycleStart",
@@ -4414,7 +4414,7 @@
     {
         "reqid": "FUN27_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If apnea is detected, the system shall automatically switch from PSV to PCV mode with pre-determined apnea backup settings for RR AP , PinspAP , I:E AP . RRAP and PinspAP shall be set by the user. I:E AP will be fixed at 1:2 \n\nRationale: in case of apnea the Ventilatorv0.2 needs to take over and ensure that ventilation continues to assure patient safety",
         "comments": "Matt, v0.4: \"I:E\" -> \"ItoE\" to fix a silent FRET error. Changing ItoE = 1:2 to ItoE = ItoE_Ap to fix the same error. Separating the subscripts with underscores.\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "if apnea System shall at the next timepoint satisfy PCVMode & RR = RR_AP & P_insp = P_inspAP & ItoE = ItoE_AP",
@@ -4500,7 +4500,7 @@
     {
         "reqid": "FUN6_4",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The self-test procedure shall confirm the expiratory valve is functional.\n\nAssuming \"expiratory valve\" is \"PS Exp\" in Figure 2.2",
         "comments": "Oisín, v0.3.1: Changed the response from just \"satisfy testPSExp\" to \"satisfy testPSExpPass | testPSExpFail | testPSExpSkip\", to work better with FUN10 and its children.\n\nMatt, v0.6: timing - eventually because its in a mode",
         "fulltext": "in SelfTestMode System shall eventually satisfy testPSExpPass | testPSExpFail | testPSExpSkip",
@@ -4574,7 +4574,7 @@
     {
         "reqid": "FUN27_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If apnea is detected, an apnea alarm shall be triggered. \n\nRationale: Clinician needs to be made aware of the fact that patient stops breathing",
         "comments": "Oisín, v0.3.1: Noticed a typo, the response was \"shall satisfy anpeaAlarm\" instead of \"apneaAlarm\"\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "if apnea System shall at the next timepoint satisfy apneaAlarm",
@@ -4654,7 +4654,7 @@
     {
         "reqid": "FUN10_4",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Once all self-test steps have been completed successfully, it shall be possible to proceed to the Standby Mode.",
         "comments": "Oisín, v0.3.1: changed \"when selfTestDone\" to \"when selfTestPass\". I must have missed this before, but with the changed this was the only use of selfTestDone left.\n\nMatt, v0.6: timing - triggered response",
         "fulltext": "when selfTestPassed System shall at the next timepoint satisfy StandbyMode",
@@ -4734,7 +4734,7 @@
     {
         "reqid": "FUN8_6",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide a log to include any change of Ventilatorv0.2 settings, including the value applied",
         "comments": "Oisín: changed variables to specify that these are ventilator settings\n\nMatt, v0.6: timing - next because triggered response",
         "fulltext": "when ventilatorSettingsChanged System shall at the next timepoint satisfy logVentilatorSettings",
@@ -4814,7 +4814,7 @@
     {
         "reqid": "FUN6",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have a self-test procedure that ensures the system and its accessories are fully functional and the alarms work.\n\nISO80601-2-12201.7.9.2.8.101",
         "comments": "Oisin, v0.3: Changed \"shall satisfy selfTestDone\" to \"shall eventually satisfy selfTestPass | selfTestFail\". Adds some more detail and defines selfTestFail for FUN7. Maybe the eventually should instead be \"before standByMode\"?\n\nMatt, v0.4: \"SelfTestPass/Fail\" -> \"SelfTestPassed/Failed\" to be consistent with Fig 2.1 (from v1.3 onwards) and with each other's tenses. \n\nMatt, v0.6: timing - eventually was already here and that seems correct.",
         "fulltext": "in SelfTestMode System shall eventually satisfy selfTestPassed | selfTestFailed",
@@ -4887,7 +4887,7 @@
     {
         "reqid": "FUN10",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Once the start-up has been completed successfully the user must select “New Patient” or “Resume Ventilation” before the system transitions to self-test mode \n\nRationale: in order to quickly resume ventilation for the same patient in case the unit had to be powered down",
         "comments": "Oisin, v0.3: Added the transition to selfTestMode, since I think that aligns with the NL better. The NL is written more like a precondition on selfTestMode, but I'm not sure if we should translate it like that\n\nOisín, v0.3.1: After discussion, reverted this change. The transition to selfTestMode is covered in the child requirements.\n\nMatt, v0.6: timing - eventually because we know the choice comes from the GUI",
         "fulltext": "when startUpDone System shall eventually satisfy newPatient | resumeVentilation",
@@ -4968,7 +4968,7 @@
     {
         "reqid": "FUN4",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall implement the following operating modes:\n\n1. Start-up Mode: The Start-up Mode initializes the system and is part of a start-up procedure to get the system ready to be used to ventilate a patient. \n\n2. Self-test Mode: The Self-test Mode ensures that the system is fully functional and is part of the start-up procedure to get the system ready to be used to ventilate a new patient\n\n3. Standby Mode: In the Standby Mode the ventilation is ready for ventilating a patient, ventilation is off, and ventilation parameters can be set.\n\n4. Alarm Test Mode: The Alarm Test Mode allows the user to test the alarms.\n\n5. Pressure Controlled Ventilation Mode (PCV): Pressure Controlled Ventilation mode is a normal operating mode that is used when patients have no spontaneous respiration.\n\n6. Pressure Support Ventilation Mode (PSV): Pressure Support Ventilation is a normal operating mode that during which the patient initiates each breath and the Ventilatorv0.2 supports the breath at the appropriate pressure level.\n\n7. Fail-safe mode: the controller detects a severe condition that required an alarm to be raised and to bring the machine to a fail-safe mode (in valve closed and out valve open).\n\nRationale: Pressure Controlled and Pressure Support Ventilation are the two basic modes of pressure regulated support needed for COVID-19 patients. A Start-up mode is needed to properly ensure that the system is fully functional before starting the ventilation of a patient. Pressure Controlled Ventilation is needed for patients in respiratory failure or fully sedated. Pressure Support Ventilation is needed for patients able to breathe on their own, in particular during the weaning process.",
         "comments": "Oisín, v0.5: Removed AlarmTestMode as it isn't mentioned anymore\n\nMatt, v0.6: timing - always because it should always be in one of these modes",
         "fulltext": "System shall always satisfy StartUpMode | SelfTestMode | StandbyMode |  PCVMode | PSVMode | FailSafeMode ",
@@ -5039,7 +5039,7 @@
     {
         "reqid": "FUN17",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall measure and display the flow of gas delivered to the patient per breathing cycle. \n\nRationale: observing and identifying the monitored ventilation parameters is considered a primary operating function\n\n\nAssuming that the \"flow of gas...\" is the same as Fl1 in Figure 2.2",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy measureFl1 & display Fl1",
@@ -5106,7 +5106,7 @@
     {
         "reqid": "FUN32",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In a worst-case failure, the controller shall leave the system in a state that allows the patient to inhale and exhale unimpeded. \n\nRationale: patient safety is primary concern",
         "comments": "This seems to repeat part of FUN31. But also doesn't specify what patientSafe (my variable, obviously) means. \n\nMatt, v0.6: timing - always, no conditions",
         "fulltext": "in FailSafeMode System shall always satisfy patientSafe",
@@ -5178,7 +5178,7 @@
     {
         "reqid": "FUN23_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The switch to PSV shall occur only after the PSV parameters have been confirmed and until that has happened the PCV ventilation shall continue",
         "comments": "Oisín, v0.5: One of the \"confirmPSVParameters\" here was mispelled, fixed it.\n\nMatt, v0.6: timing - Always, I think the way this is worded means its constant throughout the mode.",
         "fulltext": "in PCVMode System shall always satisfy ( (confirmPSVParameters & PSVMode) | (!confirmPSVParameters & PCVMode) ) & ventilating",
@@ -5252,7 +5252,7 @@
     {
         "reqid": "FUN8_7",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide a log to include any change of alarm settings, including the value applied",
         "comments": "Matt, v0.6: timing - next because triggered response",
         "fulltext": "when alarmSettingsChanged System shall at the next timepoint satisfy logAlarmSettings",
@@ -5332,7 +5332,7 @@
     {
         "reqid": "FUN10_5",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In Standby Mode ventilation shall be off and it shall be possible to adjust all user-controlled parameters for ventilation and alarms before connecting to the patient and starting patient ventilation.",
         "comments": "Matt, v0.6: timing - always, these are constant throughout the mode",
         "fulltext": "in StandbyMode System shall always satisfy ventilationOff & ventilationParamsAdjustable",
@@ -5396,7 +5396,7 @@
     {
         "reqid": "FUN5_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall indicate to the user that the initialization process has been completed successfully or failed. In case of a failure the user shall be warned that the system is out-of-service. In addition, any other operations shall be not allowed. \n\nRationale: only a fully functional unit shall be used with a patient",
         "comments": "Assumes that \"other operations shall not be allowed\" is the fail safe mode, as per Fig 2.1\n\nOisín, v0.3: Added brackets after the '|' for clarity\n\nMatt, v0.6: timing - eventually because in this mode things like initDone should happen at some point.",
         "fulltext": "in StartUpMode System shall eventually satisfy initDone | (initFail & OutOfServiceWarning &  FailSafeMode)",
@@ -5471,7 +5471,7 @@
     {
         "reqid": "FUN23_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The switch to PSV shall occur at the end of a PCV inspiratory time",
         "comments": "Oisín, v0.3: changed from \"shall satisfy if PCVInspTimeEnd then PSVMode | PCVMode\" to shall satisfy !(PCVInspTimeEnd and PSVMode); I think this requirement really specifies when the switch *can't* happen\n\nMatt, v0.6: timing - next, I thought the wording sounded constant, but it should only check when the mode is selected, not forever (in the mode) after it is selected.",
         "fulltext": "in PCVMode when PSVModeSelected System shall at the next timepoint satisfy !(PCVInspTimeEnd & PSVMode)",
@@ -5558,7 +5558,7 @@
     {
         "reqid": "FUN33",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Any power failure shall leave the system in a state that allows the patient to inhale and exhale unimpeded. \n\nRationale: patient safety is primary concern",
         "comments": "Matt, v0.6: timing - next, triggered response. But, obviously, uncheckable anyway. I assume if the power fails then the next (and last) thing to do would be in:closed out:open.",
         "fulltext": "if powerFailure System shall at the next timepoint satisfy patientSafe",
@@ -5638,7 +5638,7 @@
     {
         "reqid": "FUN6_5",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The self-test procedure shall confirm the oxygen sensor is calibrated.\n\nAssuming that the \"oxygen sensor\" is \"OS\" in Figure 2.2 (\"OS\" is \"oxygen concentration sensor\")",
         "comments": "Oisín, v0.3.1: Changed the response from just \"satisfy testOS\" to \"satisfy testOxygenSensorPass | testOxygenSensorFail | testOxygenSensorSkip\", to work better with FUN10 and its children.\n\nMatt, v0.6: timing - eventually because it's a mode",
         "fulltext": "in SelfTestMode System shall eventually satisfy testOxygenSensorPass | testOxygenSensorFail | testOxygenSensorSkip",
@@ -5712,7 +5712,7 @@
     {
         "reqid": "FUN11",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall connect to pressurized gas supply of oxygen and medical air and accept pressures up to 5.2 bar. \n\nRationale: this covers the range of pressures available in hospital setting\n\nAssuming that the connection goes through the \"GB:Gas Blender with PS (pressure sensor)\" as per Fig 2.2",
         "comments": "I think this is a partial formalisation\n\nMatt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy GBPS <= 5.2",
@@ -5778,7 +5778,7 @@
     {
         "reqid": "FUN8_8",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide a log to include change of patient, including the patient attributes;",
         "comments": "Matt, v0.6: timing - next because trigger response",
         "fulltext": "when patientChanged System shall at the next timepoint satisfy logPatientChange",
@@ -5858,7 +5858,7 @@
     {
         "reqid": "FUN24",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have a pressure support ventilation (PSV) mode, as characterized by the following plots of pressure and flow versus time. [Plots are on page 12 of the spec] \n\nRationale: In PSV mode, the Ventilatorv0.2 supports the patient who is supposed to breathe spontaneously. PSV is needed to wean patients off the ventilation by allowing them to strengthen the muscles involved in breathing. PSV is not suitable for patients unable to initiate breaths on their own.",
         "comments": "Not sure how to formalise this one",
         "fulltext": "",
@@ -5868,7 +5868,7 @@
     {
         "reqid": "FUN21_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "A new breathing cycle shall be initiated by a sudden drop in pressure below a user-settable threshold (Inhale Trigger Sensitivity). \n\nRationale: In a pressure-regulated Ventilatorv0.2, the speed of pressure drop initiated by the patient is the easiest way to detect the spontaneous breathing attempt",
         "comments": "Oisín, v0.3: changed this and FUN25 from \"when pressureDrop\" to \"when inspiratoryPressure < InhaleTriggerSensitivity\". Almost certain this requirement and FUN21_2 should start with 'in PCVMode' but for the sake of accurate translation I'll leave it out for now\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "when inspiratoryPressure < InhaleTriggerSensitivityPCV System shall at the next timepoint satisfy breathingCycleStart",
@@ -5949,7 +5949,7 @@
     {
         "reqid": "FUN12",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide breathing air through a standard medical supply single-limbed patient circuit with a pneumatically controlled diaphragm expiration valve. \n\nRationale: this is readily available medical supply",
         "comments": "Not Formalisable",
         "fulltext": "",
@@ -5959,7 +5959,7 @@
     {
         "reqid": "FUN6_6",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The self-test procedure shall confirm the local alarms are functional.",
         "comments": "Oisín, v0.3.1: Changed the response from just \"satisfy testAlarms\" to \"satisfy testAlarmsPass | testAlarmsFail | testAlarmsSkip\", to work better with FUN10 and its children.\n\nMatt, v0.6: timing - eventually because it's in a mode",
         "fulltext": "in SelfTestMode System shall eventually satisfy testAlarmsPass | testAlarmsFail | testAlarmsSkip",
@@ -6033,7 +6033,7 @@
     {
         "reqid": "FUN34",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Any failure of the gas supply shall leave the system in a state that allows the patient to inhale and exhale unimpeded. \n\nRationale: patient safety is primary concern",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "if gasSupplyFailure System shall at the next timepoint satisfy patientSafe",
@@ -6113,7 +6113,7 @@
     {
         "reqid": "FUN18_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The user shall be able to disable/enable the leak compensation feature at any time.",
         "comments": "\"At any time\" seems...strong. \n\nOisín, v0.3: Added brackets for clarity and added that disableLeakCompensation => !enableLeakCompensation\n\nMatt, v0.6: timing - always, no conditions (despite the 'if's in the response)",
         "fulltext": "System shall always satisfy (if enableLeakCompensation then leakCompensation) & (if disableLeakCompensation then (!leakCompensation & !enableLeakCompensation) )",
@@ -6181,7 +6181,7 @@
     {
         "reqid": "FUN10_6",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Once the power of the system has been off for more than 15 minutes it shall not be possible to select “Resume Ventilation”",
         "comments": "Matt, v0.6: timing - after 15 mins, specified in the req. Already here",
         "fulltext": "when off System shall after 15 minutes satisfy !resumeVentilation",
@@ -6262,7 +6262,7 @@
     {
         "reqid": "FUN35",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall prevent airborne contaminants (particulate, viral, bacterial) being delivered from the Ventilatorv0.2 to the patient.\n\n Rationale: patient safety is primary concern",
         "comments": "This seems unformalisable",
         "fulltext": "",
@@ -6272,7 +6272,7 @@
     {
         "reqid": "FUN8_9",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide a log to include power supply source change, including the source utilized",
         "comments": "Matt, v0.6: timing - next because triggered response",
         "fulltext": "when powerSupplyChanged System shall at the next timepoint satisfy logPowerSupply",
@@ -6352,7 +6352,7 @@
     {
         "reqid": "FUN20",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV mode the breathing cycle shall be defined by inspiratory pressure Pinsp_PCV relative to atmosphere, respiratory rate (RRPCV) and the ratio between the inspiratory and expiratory times (I:E PCV ).\n\nRationale: standard parameters to define PCV\n\n(Added in v1.2) \nNote: The time for one breathing cycle will be equal to 1/RR_PCV . The expiratory time will be equal to (1/RR_PCV) / 1+I:E_PCV. For instance, if RR is 10 cycles for minutes [sic] and I:E is 1:2, the respiratory cycle will last 6 seconds, the inspiratory phase will last 2 seconds and the expiratory phase 4 seconds. ",
         "comments": "Matt, v0.1: Not sure how to formalise this\n\nMatt, v0.4: Adding simple formalisation from extra detail added in v1.2 of the natural language specification.; \"I:E\" -> \"ItoE\" to fix a silent FRET error.\n\nOisín, v0.5: Fixed a typo, \"breathingCyleTime\".\n\nMatt, v0.6: timing - always, this seems constant throughout the mode",
         "fulltext": "in PCVMode System shall always satisfy breathingCycleTime = 1/RR_PCV & ExpiratoryTime = breathingCycleTime / (1+ItoE_PCV)",
@@ -6427,7 +6427,7 @@
     {
         "reqid": "FUN8",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall log key parameters, save them before being powered off and load them upon start-up to be made available on a log page on the GUI.",
         "comments": "Matt, v0.6: timing - always because there are no conditions",
         "fulltext": "System shall always satisfy logParams & saveLog & loadLog",
@@ -6495,7 +6495,7 @@
     {
         "reqid": "FUN21_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "A patient breath trigger shall reset the timer for the time-cycled breathing cycle.\n\nRationale: Avoid breath stacking, which would lead to hyperventilation",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "when patientBreathTrigger System shall at the next timepoint satisfy breathingTimerReset",
@@ -6575,7 +6575,7 @@
     {
         "reqid": "FUN36",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall prevent patient expiratory viral and bacterial contaminants from entering the atmosphere. \n\nRationale: need to ensure that clinicians and other patients are not exposed",
         "comments": "This seems unformalisable",
         "fulltext": "",
@@ -6585,7 +6585,7 @@
     {
         "reqid": "FUN6_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The self-test procedure shall confirm the switchover from external to internal power works.",
         "comments": "Oisín, v0.3.1: Changed the response from just \"satisfy testPowerSwitch\" to \"satisfy testPowerSwitchPass | testPowerSwitchFail | testPowerSwitchSkip\", to work better with FUN10 and its children.\n\nMatt, v0.6: timing - eventually because its in a mode\nOisín, v0.6.1: Actually made the above change",
         "fulltext": "in SelfTestMode System shall satisfy testPowerSwitchPass | testPowerSwitchFail | testPowerSwitchSkip",
@@ -6646,7 +6646,7 @@
     {
         "reqid": "FUN22",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV mode it shall be possible to initiate with the push of a single button a lung recruitment procedure, termed Recruitment Maneuver (RM). \n\nNote: This maneuver is not allowed in North America. \n\nRationale: The RM is an emergency procedure required immediately after intubation. RM consists in the prolonged lung inflation at increased inspiratory set pressure, as necessary to reactivate the alveoli immediately after intubation.",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "in PCVMode when RMButton System shall at the next timepoint satisfy RM",
@@ -6732,7 +6732,7 @@
     {
         "reqid": "FUN18_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When enabled, the leak compensation shall be activated by the MinPEEP alarm (SAV.15)",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "when leakCompensationEnable if MinPEEPAlarm System shall at the next timepoint satisfy leakCompensationActive",
@@ -6813,7 +6813,7 @@
     {
         "reqid": "FUN5",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The Start-up Mode shall be initiated by pushing the power button of the system once the system has been connected to the breathing circuit (without connection to the patient), the air supply, and the power source. \n\nRationale: need to turn on the system once all connections are attached so the sensors and valves can be properly tested.",
         "comments": "Oisín, v0.3: Initial version of this was just \"when powerButton System shall satisfy StartUpMode\". I added more detail from the NL requirement about the preconditions for start up:\n\"when breathingCircuitConnected & !(patientConnected) & airSupplyConnected & powerConnected System shall satisfy (powerButton => StartUpMode)\"\nUnsure if this should maybe be the other way around.\n\nOisín, v0.3.1: After discussion in meeting, moved powerButton into the condition.\n\"when powerButton & (breathingCircuitConnected & !(patientConnected) & airSupplyConnected & powerConnected) System shall satisfy StartUpMode\"\n\nMatt, v0.6: timing - next because button press then enter startup",
         "fulltext": "when powerButton & (breathingCircuitConnected & !(patientConnected) & airSupplyConnected & powerConnected) System shall at the next timepoint satisfy StartUpMode",
@@ -6897,7 +6897,7 @@
     {
         "reqid": "FUN1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide ventilation support for patients who require mechanical ventilation and weigh more than 40 kg (88 lbs). \n\nRationale: ventilation of children and infants is more challenging",
         "comments": "Not formalisable",
         "fulltext": "",
@@ -6907,7 +6907,7 @@
     {
         "reqid": "FUN8_10",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide a log to include results of the pre-use check.",
         "comments": "Not clear if \"pre-use check\" is the same as the self test\n\nMatt, v0.6: timing - next because triggered response",
         "fulltext": "when preUseCheckDone System shall at the next timepoint satisfy logPreUseCheck",
@@ -6987,7 +6987,7 @@
     {
         "reqid": "FUN25",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PSV mode the breathing cycle shall be initiated by a sudden drop in pressure below a user-settable threshold (Inhale Trigger Sensitivity) \n\nRationale: In a pressure-regulated Ventilatorv0.2, the speed of pressure drop initiated by the patient is the easiest way to detect the spontaneous breathing attempt as per Ventilatorv0.2 experts",
         "comments": "Oisín, v0.3: changed this and FUN21_1 from \"when pressureDrop\" to \"when inspiratoryPressure < InhaleTriggerSensitivity[PCV/PSV]\"\n\nMatt, v0.6: timing - next, triggered response.",
         "fulltext": "in PSVMode when inspiratoryPressure < InhaleTriggerSensitivityPSV System shall at the next timepoint satisfy breathingCycleStart",
@@ -7074,7 +7074,7 @@
     {
         "reqid": "FUN7",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the self-test fails, the user shall be warned that the system is out-of-service. In addition, any other operations shall be not allowed.",
         "comments": "Assuming: \"any other operations should not be allowed\" means Fail Safe Mode, as per Fig 2.1.\nThis is subtly different to FUN5_2 because of the wording of the natural language requirement.\n\nMatt, v0.6: timing - Next because it triggers response",
         "fulltext": "in SelfTestMode if selfTestFail System shall at the next timepoint satisfy OutOfServiceWarning & FailSafeMode",
@@ -7161,7 +7161,7 @@
     {
         "reqid": "FUN2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide pressure regulated ventilation controlling the inspiratory pressure. \n\nRationale: pressure regulated ventilation is most beneficial for COVID-19 patients",
         "comments": "Not formalisable",
         "fulltext": "",
@@ -7171,7 +7171,7 @@
     {
         "reqid": "FUN6_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The self-test procedure shall confirm there are no unacceptable leaks in the breathing circuit.",
         "comments": "Oisín, v0.3.1: Changed the response from just \"satisfy testLeaks\" to \"satisfy testLeaksPass | testLeaksFail | testLeaksSkip\", to work better with FUN10 and its children.\n\nMatt, v0.6: timing - eventually because it's in a mode",
         "fulltext": "in SelfTestMode System shall eventually satisfy testLeaksPass | testLeaksFail | testLeaksSkip",
@@ -7245,7 +7245,7 @@
     {
         "reqid": "FUN8_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have means to indicate visually the cumulative hours of operation of the Ventilatorv0.2, either 1) automatically; or 2) by operator action.",
         "comments": "Not sure this is formalisable",
         "fulltext": "",
@@ -7255,7 +7255,7 @@
     {
         "reqid": "FUN10_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If “New Patient” is selected, the user shall have to enter patient attributes and the completion of every step of the self-test procedure (FUN.6) shall be mandatory",
         "comments": "Oisín, v0.3.1: Updated to include the definition of \"selfTestPass\" where all tests must be passed.\nMatt: v0.4: SelfTestPass -> SelfTestPassed (as per Fig 2.1 since v1.3 of the natural language specification). Leaving the individual tests as 'pass' since they're not mentioned in Fig 2.1)\n\nMatt, v0.6: timing - tricky...eventually, because patientAttributesEntered comes from GUI and the pass responses will take time. Mode change should be 'next' but it should probably be after the patientAttributesEntered is true, so eventually seems fine.",
         "fulltext": "when newPatient System shall eventually satisfy patientAttributesEntered & SelfTestMode & ((testPowerSwitchPass &  testLeaksPass & testFl2Pass & testPSExpPass & testOxygenSensorPass & testAlarmsPass) => selfTestPassed)",
@@ -7343,7 +7343,7 @@
     {
         "reqid": "FUN13",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall measure and display the breathing rate (number of breathes per minute). \n\nRationale: observing and identifying the monitored ventilation parameters is considered a primary operating function",
         "comments": "Oisín, v0.3: changed \"measureBPM & displayBPM\" to \"measureRR & displayRR\", since the document uses RR as an abbreviation for 'Respiratory Rate'.\n\nMatt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy measureRR & displayRR",
@@ -7410,7 +7410,7 @@
     {
         "reqid": "FUN3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide positive end expiratory pressure (PEEP) ventilation. \n\nRationale: PEEP is important to keep alveoli recruited at the end of expiration",
         "comments": "Not formalisable",
         "fulltext": "",
@@ -7420,7 +7420,7 @@
     {
         "reqid": "FUN37",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have an internal power source that allows operation for 120 minutes past the failure of the external power source. \n\nRationale: regulatory requirement",
         "comments": "Matt, v0.6: timing - leaving the timing alone",
         "fulltext": "if powerFailure System shall for 120 minutes satisfy !off",
@@ -7501,7 +7501,7 @@
     {
         "reqid": "FUN23",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide means to switch from PCV to PSV while PCV ventilation is active. \n\nRationale: the switchover between modes should not require stopping the ventilation in order to maintain ventilation of the patient",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "in PCVMode when PSVModeSelected System shall at the next timepoint satisfy ventilating & PSVMode",
@@ -7588,7 +7588,7 @@
     {
         "reqid": "FUN29",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV and PSV mode there shall be the possibility to press a single button to initiate an Inspiratory Pause (IP) that closes both inspiratory and expiratory valve at the end of the inspiratory phase as long as the operator holds the button but no longer than 40 sec \n\nRationale: The Inspiratory Pause will, allowing for the measurement of the Plateau Pressure (PP), the pressure reached inside the alveoli at the end of the inspiratory cycle. PP may be lower than the target inspiratory pressure P insp provided by the Ventilatorv0.2. The difference between PP and the PEEP is called Driving Pressure, DP (DP = PP - PEEP).",
         "comments": "Oisín, v0.3: added a condition that this happens at the end of the inspiratoryphase. Tried to find a better way to write these two requirements, I think I'm decently happy with this. The one problem here is that this could allow for releasing and re-pressing the button within the 40 second window, but maybe not given the scope and condition.\n\nOisín, v0.5: changed the condition from \"when (PCVInspiratoryPhaseEnd | PSVInspiratoryPhaseEnd)\" to just \"when (InspiratoryPhaseEnd)\", since those variables were only used here. Also made all the variables start with lower case for consistency.\n\nMatt, v0.6: timing - leaving timing condition alone",
         "fulltext": "while inspiratoryPauseButton when (inspiratoryPhaseEnd) System shall for 40 seconds satisfy (inspiratoryPauseButton => inValveClose & outValveClose)",
@@ -7676,7 +7676,7 @@
     {
         "reqid": "FUN8_11",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall provide a log to include the overall duration of the active use of the O2 sensor (%-hours) \n\nRationale: The oxygen sensor has a limited lifetime expectancy requiring a monitoring of its use in order to track its deterioration over time",
         "comments": "Matt, v0.6: timing - always because no conditions",
         "fulltext": "System shall always satisfy logO2SensorUse",
@@ -7742,7 +7742,7 @@
     {
         "reqid": "FUN8_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall be equipped with an alarm system log with a capacity of at least 1000 events in total for: high priority alarm conditions; medium priority alarm conditions; and alarm signal inactivation states",
         "comments": "Not sure this is formalisable",
         "fulltext": "",
@@ -7752,7 +7752,7 @@
     {
         "reqid": "FUN38",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall have clearly ranked (high/medium/low priority) visual alarms. \n\nRationale: regulatory requirement",
         "comments": "Not sure how to formalise that one.",
         "fulltext": "",
@@ -7762,7 +7762,7 @@
     {
         "reqid": "FUN14",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall measure and display the percentage of oxygen in the gas being delivered to the patient. \n\nRationale: observing and identifying the monitored ventilation parameters is considered a primary operating function",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "System shall always satisfy measureO2% & displayO2%",
@@ -7829,7 +7829,7 @@
     {
         "reqid": "FUN10_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If “Resume Ventilation” is selected, the system shall load the last calibration parameters, alarm thresholds, and ventilation parameters from the last active patient ventilation.",
         "comments": "Matt, v0.6: timing - next, triggered response.",
         "fulltext": "when resumeVentilation System shall at the next timepoint satisfy loadLastParams",
@@ -7909,7 +7909,7 @@
     {
         "reqid": "FUN8_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The system shall time stamp all alarm events either via the date and time, the elapsed time since the occurrence of the alarm condition, or the elapsed time from the start of use of system",
         "comments": "Not sure this is formalisable",
         "fulltext": "",
@@ -7919,7 +7919,7 @@
     {
         "reqid": "CONT25",
         "parent_reqid": "FUN21",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When in the expiration phase, a new inspiration shall be initiated either after a breathing cycle is over, or when a spontaneous breath is detected. The maximum duration of the expiration phase (i.e., the Expiratory time) yields E = 60 / (RR_PCV x (1 + I:E_PCV )) Rationale: While the main mode of PCV is mandatory breathing control with constant rate, clinical advice is that the patient also needs to be able to trigger a breath spontaneously",
         "comments": "Oisín, v0.5: The inspiratoryPhaseStart here is redundant but I included it for traceability with the NL requirement.\n\nMatt, v0.6: timing - always, the condition is in the response so I think this works",
         "fulltext": "in PCVMode Controller shall always satisfy (breathingCycleDone | patientBreathingRequest) => (breathingCycleStart & inspiratoryPhaseStart)",
@@ -7994,7 +7994,7 @@
     {
         "reqid": "CONT15",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the pressure sensor fails to connect or reports an error condition after a fixed number of retries (maximum 5), the controller shall transition to the fail-safe mode.",
         "comments": "Oisín, v0.5: \n\nMatt, v0.6: timing - Changed immediately to next, to match everything else I've got with a triggered response.",
         "fulltext": "in StartUpMode if pressureSensorRetries >= 5 & (pressureSensorConnFailure | pressureSensorError) Controller shall at the next timepoint satisfy FailSafeMode",
@@ -8082,7 +8082,7 @@
     {
         "reqid": "CONT42_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When expiratory pause timeout (max exp pause) is over, the cycle shall proceed immediately to inspiration.\nRationale: the timeout prevents stopping the patient breath cycle in case of human error",
         "comments": "Matt, v0.6: timing - Leaving the timing conditions as is",
         "fulltext": "when expiratoryPause Controller shall after 40 seconds satisfy !expiratoryPause & inspiratoryPhaseStart",
@@ -8163,7 +8163,7 @@
     {
         "reqid": "CONT1_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "VentilationOff: In ventilation off, the machine does not ventilate, the in valve is closed and the out valve is opened.",
         "comments": "This one doesn't actually reference a FUN requirement, but it's more formalizable than the others.\nAlso displays a pretty clear mismatch in the language between the FUN section and CONT section; here the mode is called VentilationOff, while it was called Standby Mode in requirement FUN4. I have called it ventilationOff here for consistency with the natural-language requirement.\n\nMatt, v0.6: timing - was already always\n\nOisín, v0.6.1: Changed my mind on this one, changed \"while ventilationOff\" to \"in StandbyMode\". No point having only this one be different.",
         "fulltext": "in StandbyMode Controller shall always satisfy ventilationOff & inValveClose & outValveOpen",
@@ -8228,7 +8228,7 @@
     {
         "reqid": "CONT9",
         "parent_reqid": "FUN27",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from PSV to PCV shall occur if the patient does not trigger a breath within the time of the apnea trigger window. The switch shall occur with respiratory rate, target inspiratory pressure and I:E defined for the apnea backup mode.\nRationale: the patient is not able to breathe",
         "comments": "Oisín: This is effectively FUN27_2 inlined into FUN27\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "in PSVMode when breathingTime >= apneaLagTime Controller shall at the next timepoint satisfy PCVMode & RR = RR_AP & P_insp = P_inspAP & ItoE = ItoE_AP",
@@ -8321,7 +8321,7 @@
     {
         "reqid": "CONT1_1",
         "parent_reqid": "FUN5",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Start-up Mode: In start-up mode the controller initializes itself with default configuration parameters (if any), checks the system memory and the communication of the controller with the sensors and valves, as well as between the controller and the GUI. Start-up mode is completed once the required activities have been completed.",
         "comments": "Oisín: This is almost exactly the same text as FUN.5.1, with the little note about it completing. So I just made this a combination of FUN5_1 and FUN5_2\n\nMatt, v0.6: timing - eventually, takes time",
         "fulltext": "in StartUpMode Controller shall eventually satisfy initStart & (initDone | (initFail & OutOfServiceWarning & FailSafeMode))",
@@ -8397,7 +8397,7 @@
     {
         "reqid": "CONT20",
         "parent_reqid": "FUN19",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "In PCV mode the breathing cycle shall be defined by inspiratory pressure Pinsp P CV relative to atmosphere, respiratory rate (RRP CV ) and the ratio between the inspiratory and expiratory times (I:EP CV ).\nRationale: this is the most appropriate procedure for COVID-19 patients as it allows the immediate reopening of the alveoli and is strongly recommended by the doctors and nurses in the COVID-19 wards, rather than the constant flow procedure. These characteristics of the ventilator pressure transient during the inspiratory cycle are crucial to avoid barotrauma and to minimise long term fatigue of muscles and alveoli induced by forced mechanical ventilation.",
         "comments": "Oisín, v0.5: Exactly the same as FUN20 but with the \"Rationale\" of FUN19, and it references FUN19. Because why not.\n\nMatt, v0.6: timing - always, seems constant",
         "fulltext": "in PCVMode Controller shall always satisfy breathingCycleTime = 1/RR_PCV & ExpiratoryTime = breathingCycleTime / (1+ItoE_PCV)",
@@ -8472,7 +8472,7 @@
     {
         "reqid": "CONT22",
         "parent_reqid": "FUN20",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The cycle starts with the inspiration phase that lasts an Inspiratory time I = 60 x I:E_PCV /(RR_PCV x (1 + I:E_PCV )) seconds. After that the expiration phase begins.",
         "comments": "in PCVMode System shall satisfy breathingCycleTime = 1/RR_PCV & ExpiratoryTime = breathingCycleTime / (1+ItoE_PCV)\n\nOisín, v0.5: Initially I forgot that we can't put variables for time units. Here's that version:\n\"in PCVMode when inspiratoryPhaseStart System shall after 60*(ItoE_PCV/(RR_PCV * (1 + ItoE_PCV )) ) seconds satisfy inspiratoryPhaseEnd & expiratoryPhaseStart\"\n\nAlternatively, you could put this in terms of the variables defined in FUN20:\n\"after 60*ItoE_PCV*breathingCycleTime/(1 + ItoE_PCV )\"\nI think that's right.\n\nMatt, v0.6: timing - always, seems constant",
         "fulltext": "in PCVMode Controller shall always satisfy inspiratoryTime = 60*(ItoE_PCV/(RR_PCV * (1 + ItoE_PCV )) )",
@@ -8546,7 +8546,7 @@
     {
         "reqid": "CONT27",
         "parent_reqid": "FUN28",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the controller is in the expiration phase, and it does not detect a spontaneous breath (i.e., the condition drop(PAW) > ITS_PCV is false), within the expiration time, if the Expiratory Pause start is set by the GUI, an Expiratory Pause shall start (see CONT.42).",
         "comments": "when expiratoryPauseButton & (ExpiratoryPhaseEnd) System shall until buttonUnPressOr60Seconds satisfy expirationPhaseEnd & inValveClose & outValveClose\n\nMatt, v0.6: timing - Leaving the stopping condition as is",
         "fulltext": "in PCVMode when expiratoryPauseButton & ExpiratoryPhaseEnd & !patientBreathingRequest Controller shall until buttonUnPressOr60Seconds satisfy expirationPhaseEnd & inValveClose & outValveClose",
@@ -8644,7 +8644,7 @@
     {
         "reqid": "CONT43_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The controller shall stop RM if it is required from the GUI.\nRationale: The GUI stops the RM if required by the user.",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "while RM if !RMButton Controller shall at the next timepoint satisfy !RM & expirationPhaseStart",
@@ -8730,7 +8730,7 @@
     {
         "reqid": "CONT40",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When the ventilator is in an expiration state the in valve shall be closed (pressure 0) and the out valve shall be open.\nRationale: The ventilator opens the out valve to allow the patient to expirate, while the in valve is closed to avoid air in.",
         "comments": "Matt, v0.6: timing - always, no conditions",
         "fulltext": "while expiratoryState Controller shall always satisfy inValveClose & outValveOpen",
@@ -8803,7 +8803,7 @@
     {
         "reqid": "CONT2",
         "parent_reqid": "FUN5",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition to Start-up Mode shall be allowed by pushing the power button located on the back side of the ventilator unit to turn it on",
         "comments": "Oisín: The wording of \"shall be allowed\" made me decide to write this requirement as a negative - the system cannot turn on unless the powerButton is pressed. Otherwise this just translates as a less detailed (and potentially contradictory) version of FUN5\n\nMatt, v0.6: timing - always? I wasn't sure about this, because of the negative woding. But I think that makes sense.",
         "fulltext": "if powerOff & !powerButton Controller shall always satisfy !StartUpMode",
@@ -8884,7 +8884,7 @@
     {
         "reqid": "CONT41_2",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "When inspiratory pause timeout (max_ins_pause) is over, the cycle shall proceed immediately to expiration.\nRationale: The timeout prevents stopping the patient breath cycle in case of human error.",
         "comments": "Oisín, v0.5: I feel like FUN29 combining these into one requirement is a lot cleaner. Also I don't understand why this isn't a child of FUN29. Note that max_ins_pause is 40 seconds.",
         "fulltext": "when inspiratoryPause Controller shall after 40 seconds satisfy !inspiratoryPause & expirationPhaseStart",
@@ -8965,7 +8965,7 @@
     {
         "reqid": "CONT29",
         "parent_reqid": "FUN24",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The Pressure Support Ventilation (PSV) mode shall support the breathing of the patient with positive pressure up to a peak value of P_inspPSV while the patient triggers every breath and maintains control of the respiratory rate.\nRationale: PSV is not suitable for patients unable to initiate breaths on their own.",
         "comments": "Oisín, v0.5: Much like FUN24, not really sure how to formalize this.",
         "fulltext": "",
@@ -8975,7 +8975,7 @@
     {
         "reqid": "CONT36_3",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "min_exp_time_psv shall be the half of the last inspiration time. min_exp_time_psv shall be in the interval [0.4 : 2] sec.\nRationale: The min exp time psv prevents moving immediately to inspiration allowing the patient to expirate.",
         "comments": "Oisín, v0.5: Making use of the inspClock variable I created, assuming it doesn't get reset until the start of the inspiratory phase.\n\nMatt, v0.6: timing - always, no conditions but conditions in the response",
         "fulltext": "in PSVMode Controller shall always satisfy minExpiratoryTime >= 0.4 & minExpiratoryTime <= 2 & (expiratoryPhase => minExpiratoryTime = inspClock/2)",
@@ -9049,7 +9049,7 @@
     {
         "reqid": "CONT16",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the external ADC fails to initialize or reports an error\ncondition after a fixed number of retries (maximum 5),\nthe controller shall transition to the fail-safe mode.",
         "comments": "Matt, v0.6: timing - changed immediately to next, to match other triggered responses",
         "fulltext": "in StartUpMode if ADCRetries >= 5 & (ADCConnFailure | ADCError) Controller shall at the next timepoint satisfy FailSafeMode",
@@ -9137,7 +9137,7 @@
     {
         "reqid": "CONT1_4",
         "parent_reqid": "FUN19",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Pressure Controlled Ventilation Mode: Pressure Controlled Ventilation mode is used when patients have no spontaneous respiration.",
         "comments": "Oisín: You could make this requirement something like \"if noSpontaneousRespiration System shall satisfy PCVMode\" but that doesn't seem great",
         "fulltext": "",
@@ -9147,7 +9147,7 @@
     {
         "reqid": "CONT37",
         "parent_reqid": "FUN27",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If the patient does not trigger a breath within the time of the apnea trigger window (apnea lag) the ventilator shall switch to PCV mode (apnea backup ventilation) with respiratory rate RR_AP, inspiratory pressure P_inspAP , and the ratio between inspiratory time and Expiratory time I:E_AP .\nRationale: Need to ensure patients continue to receive breaths. The operator needs to set the apnea backup PCV setting before starting the ventilation in PSV mode, otherwise the ventilator will not start operating.",
         "comments": "FUN27: in PSVMode when breathingTime >= apneaLagTime System shall satisfy apnea\n\nFUN27_2: if apnea System shall satisfy PCVMode & RR = RR_AP & P_insp = P_inspAP & ItoE = ItoE_AP\n\nOisín, v0.5: Essentially just combining FUN27 and FUN27_2.\n\nMatt, v0.6: timing - next, triggered response",
         "fulltext": "in PSVMode when expClock >= apneaLagTime Controller shall at the next timepoint satisfy apnea & PCVMode & RR = RR_AP & P_insp = P_inspAP & ItoE = ItoE_AP",
@@ -9241,7 +9241,7 @@
     {
         "reqid": "CONT36_1",
         "parent_reqid": "FUN25",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "A new inspiration shall be initiated by a sudden drop in pressure above the inhale trigger sensitivity (ITS_PSV ), which shall be set by the user (i.e., it yields the condition drop(PAW) > ITS_PSV )).\nRationale: In a pressure-regulated ventilator, the speed of pressure drop initiated by the patient is the easiest way to detect the spontaneous breathing attempt as per ventilator experts.",
         "comments": "CONT26: while PSVMode when dropPAW > ITS_PCV System shall immediately satisfy patientBreathingRequest\n\nOisín, v0.5: Duplicate of CONT26 for PSVMode. I added the \"& expiratoryPhase\" because of CONT36.\n\nMatt, v0.6: timing - changed immediately to next to match other triggered responses",
         "fulltext": "while PSVMode & expiratoryPhase when dropPAW > ITS_PSV Controller shall at the next timepoint satisfy patientBreathingRequest",
@@ -9329,7 +9329,7 @@
     {
         "reqid": "CONT7",
         "parent_reqid": "FUN23",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from PCV to PSV shall occur if ventilation is on, the transition from PCV to PSV shall occur at the end of a PCV inspiratory time if the change mode command has been received from the GUI.\nRationale: the doctor decides when the patient has some ability to breathe spontaneously.",
         "comments": "Oisín: It's possible that \"inspiratoryPhaseEnd\" shouldn't be used here, since that is used in FUN40 where the system is truncating the inspiration.\n\nMatt, v0.6: timing - next, triggered response (though the ventilation should be constant, assume that it doesn't get set to false.)",
         "fulltext": "in PCVMode if inspiratoryPhaseEnd & PSVModeSelected Controller shall at the next timepoint satisfy ventilating & PSVMode",
@@ -9417,7 +9417,7 @@
     {
         "reqid": "CONT8",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The transition from PCV to VentilationOff shall occur if the user stops the ventilation in PCV mode.\nRationale: the ventilation stops when the user selects the stop command from the GUI.",
         "comments": "Oisín: I don't think there was a FUN requirement with this transition, if there is I couldn't see it. Took the name \"stopVentilation\" from the diagram, I'm sure that with \"VentilationOff\" won't get confusing at all.\n\nMatt, v0.6: timing - next, triggered response.",
         "fulltext": "in PCVMode if stopVentilation Controller shall at the next timepoint satisfy StandbyMode",
@@ -9503,7 +9503,7 @@
     {
         "reqid": "CONT30",
         "parent_reqid": "FUN24",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "The breath cycle shall start with the inspiration phase.",
         "comments": "Oisín, v0.5: Duplicate of CONT21 for PSV instead of PCV.\n\nMatt, v0.6: timing - changed immediately to next, to match other triggered responses",
         "fulltext": "in PSVMode when BreathingCycleStart Controller shall at the next timepoint satisfy inspiratoryPhaseStart",
@@ -9589,7 +9589,7 @@
     {
         "reqid": "CONT1_5",
         "parent_reqid": "FUN24",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Pressure Support Ventilation Mode: Pressure Support Ventilation mode is used when the patients are able to initiate every breath and the machine supports them.",
         "comments": "Oisín: Same issue as CONT1_4",
         "fulltext": "",
@@ -9599,7 +9599,7 @@
     {
         "reqid": "CONT44",
         "parent_reqid": "FUN40",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "If PAW exceeds Max_Pinsp during inspiration, the cycle shall proceed immediately to expiration.",
         "comments": "Matt, v0.6: timing - next, triggered response",
         "fulltext": "if P_insp > MaxP_insp Controller shall at the next timepoint satisfy inspiratoryPhaseEnd & expirationPhaseStart",
@@ -9681,7 +9681,7 @@
     {
         "reqid": "CONT11",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "Final State shall be reached by pushing the power button located on the back side of the ventilator unit to turn it off.\nRationale: the ventilator is turned off when the user pushes the power button on the ventilator unit",
         "comments": "Oisín: This is the first time the \"Final State\" is mentioned, it's not on any diagrams. I'm not going to propagate it to FUN4 and CONT46 for now.\n\nMatt, v0.6: timing - next, triggered response.\n(Also, I think 'final state' refers to the final state in the state machine in Fig 4.1)",
         "fulltext": "if powerOff Controller shall at the next timepoint satisfy FinalState",
@@ -9761,7 +9761,7 @@
     {
         "reqid": "CONT11_1",
         "parent_reqid": "",
-        "project": "Ventilator v0.6",
+        "project": "Ventilator v0.6.1",
         "rationale": "During Final state, all parameters (if any) are to be safely stored before the final state is complete and the unit is de-energized.",
         "comments": "Oisín: I suppose this is related to FUN8: \"The system shall log key parameters, save them before being powered off and load them upon start-up....\". One could make an individual variable for each parameter mentioned in FUN8's sub-requirements, but I don't want to.\n\nMatt, v0.6: timing - eventually, takes time.",
         "fulltext": "in FinalState Controller shall eventually satisfy parametersStored & off",
